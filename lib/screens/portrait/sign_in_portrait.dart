@@ -6,12 +6,7 @@ import '../../features/firebase_auth/presentation/widgets/social_auth_widget.dar
 import '../../features/firebase_auth/presentation/widgets/welcome_message.dart';
 import '../screens/sign_up_screen.dart';
 
-// import '../../../bloc/fire_auth_cubit/auth_cubit.dart';
-// import '../../widgets/authentication_form.dart';
-// import '../../widgets/social_auth_widget.dart';
-// import '../../widgets/welcome_message.dart';
-// import '../screens/sign_up_screen.dart';
-// import '../sign_up_screen.dart';
+
 
 class SignInPortrait extends StatelessWidget {
   const SignInPortrait(

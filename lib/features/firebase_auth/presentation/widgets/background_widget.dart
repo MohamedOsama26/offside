@@ -15,13 +15,10 @@ class BackgroundResponsiveBuilder extends StatelessWidget {
                     fit: BoxFit.fill,
                     'assets/photos/soccer-players-action-professional-stadium.png',
                   ),
-                  // flex: 2,
                 ),
                 Expanded(
                   child: Container(
-                    // color: Colors.red,
                   ),
-                  // flex: 3,
                 ),
               ],
             );

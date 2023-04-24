@@ -62,7 +62,9 @@ class SocialAuth extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 16),
               color: const Color(0xFFFFFFFF),
               child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    AuthCubit.get(context).signInGoogle();
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

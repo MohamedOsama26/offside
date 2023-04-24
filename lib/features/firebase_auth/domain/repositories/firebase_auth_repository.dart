@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:offside/features/firebase_auth/data/models/response_model.dart';
 
 abstract class FirebaseAuthRepository {
@@ -9,5 +8,7 @@ abstract class FirebaseAuthRepository {
   Future<Response> signInWithGoogle();
 
   Future<Response> signInWithFacebook();
+
+  Future<void> signOut();
 
 }

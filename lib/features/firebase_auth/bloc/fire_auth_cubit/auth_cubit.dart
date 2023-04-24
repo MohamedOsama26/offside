@@ -1,7 +1,4 @@
-
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:offside/features/firebase_auth/data/repositories/firebase_auth_repository_impl.dart';
 
 part 'auth_state.dart';
@@ -16,38 +13,63 @@ class AuthCubit extends Cubit<AuthState> {
   void signInEmail({required String email, required String password}) {
     emit(AuthLoading());
     _auth.signInWithEmail(email: email, password: password).then((response) {
-      print(response);
-      emit(AuthSuccess());
+      if (response.user != null) {
+        emit(AuthSuccess());
+      } else {
+        emit(AuthError(errorContent: response.message!));
+      }
     }).catchError((error) {
-      print('===> Error ===> $error');
-      emit(AuthError());
+      emit(AuthError(errorContent: error));
     });
   }
 
-  void signUpEmail({required String email, required String password}){
+  void signUpEmail({required String email, required String password}) {
     emit(AuthLoading());
     _auth.registerWithEmail(email: email, password: password).then((response) {
-      print(response);
+      if (response.user != null) {
+        emit(AuthSuccess());
+      } else {
+        emit(AuthError(errorContent: response.message!));
+      }
+    }).catchError((error) {
+      emit(AuthError(errorContent: error));
+    });
+  }
+
+  void signInFacebook() {
+    emit(AuthLoading());
+    _auth.signInWithFacebook().then((response) {
+      if (response.user != null) {
+        emit(AuthSuccess());
+      } else {
+        emit(AuthError(errorContent: response.message!));
+      }
+    }).catchError((error) {
+      emit(AuthError(errorContent: error));
+    });
+  }
+
+  void signInGoogle() {
+    emit(AuthLoading());
+    _auth.signInWithGoogle().then((response) {
+      if (response.user != null) {
+        emit(AuthSuccess());
+      } else {
+        emit(AuthError(errorContent: response.message!));
+      }
+    }).catchError((error) {
+      emit(AuthError(errorContent: error.message));
+    });
+  }
+
+  void signOut() {
+    emit(AuthLoading());
+    _auth.signOut().then((_) {
       emit(AuthSuccess());
     }).catchError((error) {
-      print('===> Error ===> $error');
-      emit(AuthError());
-    });
-  }
-
-  void signInFacebook(){
-    emit(AuthLoading());
-    _auth.signInWithFacebook().then((response){
-      print(response.user);
-      emit(AuthSuccess());
-    }).catchError((error){
-      print('===> Error ===> $error');
-      emit(AuthError());
+      emit(AuthError(errorContent: error));
     });
   }
 
 
-  void signInGoogle(){
-
-  }
 }
