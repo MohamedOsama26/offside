@@ -2,15 +2,25 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:offside/features/firebase_auth/bloc/fire_auth_cubit/auth_cubit.dart';
 import 'package:offside/screens/home_screen.dart';
 import 'package:offside/screens/screens/sign_in_screen.dart';
 import 'package:offside/utils/bloc_observer.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import 'features/favourite_teams/bloc/team_cubit.dart';
+import 'features/favourite_teams/data/models/team.dart';
+import 'features/favourite_teams/data/models/team_object.dart';
+import 'features/favourite_teams/data/models/team_venue.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await Hive.initFlutter();
+  Hive.registerAdapter(TeamAdapter());
+  Hive.registerAdapter(TeamVenueAdapter());
+  Hive.registerAdapter(TeamObjectAdapter());
   Bloc.observer = GlobalBlocObserver();
   runApp(const MyApp());
 }
@@ -21,7 +31,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => AuthCubit())],
+      providers: [
+        BlocProvider(create: (context) => AuthCubit()),
+        BlocProvider(create: (context) => TeamCubit()..readFavourites()),
+      ],
       child: ResponsiveSizer(
           builder: (context, orientation, screenType) => MaterialApp(
               debugShowCheckedModeBanner: false,

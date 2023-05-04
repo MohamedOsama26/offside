@@ -27,7 +27,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     _auth.registerWithEmail(email: email, password: password).then((response) {
       if (response.user != null) {
-        emit(AuthSuccess());
+        emit(AuthSuccess(newUser: response.newUser));
       } else {
         emit(AuthError(errorContent: response.message!));
       }
@@ -40,7 +40,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     _auth.signInWithFacebook().then((response) {
       if (response.user != null) {
-        emit(AuthSuccess());
+        emit(AuthSuccess(newUser: response.newUser));
       } else {
         emit(AuthError(errorContent: response.message!));
       }
@@ -53,7 +53,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     _auth.signInWithGoogle().then((response) {
       if (response.user != null) {
-        emit(AuthSuccess());
+        emit(AuthSuccess(newUser: response.newUser));
       } else {
         emit(AuthError(errorContent: response.message!));
       }
@@ -65,7 +65,7 @@ class AuthCubit extends Cubit<AuthState> {
   void signOut() {
     emit(AuthLoading());
     _auth.signOut().then((_) {
-      emit(AuthSuccess());
+      emit(AuthSuccess(newUser: true));
     }).catchError((error) {
       emit(AuthError(errorContent: error));
     });

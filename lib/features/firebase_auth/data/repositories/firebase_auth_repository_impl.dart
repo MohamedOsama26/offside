@@ -20,6 +20,7 @@ class FirebaseAuthRepositoryImpl extends FirebaseAuthRepository {
       );
       return Response(
         user: credential.user,
+        newUser: true,
       );
     } on FirebaseAuthException catch (e) {
       return Response(
@@ -51,6 +52,7 @@ class FirebaseAuthRepositoryImpl extends FirebaseAuthRepository {
 
   @override
   Future<Response> signInWithFacebook() async {
+
     // Trigger the sign-in flow
     final LoginResult loginResult = await FacebookAuth.instance.login();
 
@@ -61,7 +63,7 @@ class FirebaseAuthRepositoryImpl extends FirebaseAuthRepository {
     // Once signed in, return the UserCredential
     final UserCredential credential = await FirebaseAuth.instance
         .signInWithCredential(facebookAuthCredential);
-    return Response(user: credential.user);
+    return Response(user: credential.user,newUser:credential.additionalUserInfo?.isNewUser);
   }
 
   @override
@@ -84,7 +86,7 @@ class FirebaseAuthRepositoryImpl extends FirebaseAuthRepository {
         await FirebaseAuth.instance.signInWithCredential(credential);
 
     // return Response
-    return Response(user: generatedCredential.user);
+    return Response(user: generatedCredential.user,newUser: generatedCredential.additionalUserInfo?.isNewUser);
   }
 
   @override

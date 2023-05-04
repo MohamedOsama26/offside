@@ -11,4 +11,5 @@ abstract class FirebaseAuthRepository {
 
   Future<void> signOut();
 
+  // Future<bool> newUser();
 }
