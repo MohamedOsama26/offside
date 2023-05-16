@@ -14,13 +14,8 @@ class DialogMessage extends StatelessWidget {
         ),
         padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
         margin: const EdgeInsets.symmetric(horizontal: 28.0),
-        // width: MediaQuery.of(context).size.width*0.8,
-        // height: MediaQuery.of(context).size.height*0.2,
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
-          // direction: Axis.vertical,
           children: [
             Text('SOMETHING WENT WRONG',
                 style: TextStyle(

@@ -44,10 +44,10 @@ dependencies:
   google_sign_in: ^6.1.0
   shared_preferences: ^2.1.0
   firebase_database: ^10.1.1
-#  sqflite: ^2.2.8
-#  path: ^1.8.3
+  http: ^0.13.6
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  intl: ^0.18.1
   
 dev_dependencies:
   flutter_test:

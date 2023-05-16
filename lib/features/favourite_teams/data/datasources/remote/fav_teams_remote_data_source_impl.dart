@@ -1,5 +1,5 @@
-import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
 import 'fav_teams_remote_data_source.dart';
 

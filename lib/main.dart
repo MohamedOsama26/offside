@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:offside/features/firebase_auth/bloc/fire_auth_cubit/auth_cubit.dart';
+import 'package:offside/features/fixtures_score/bloc/matches_cubit.dart';
 import 'package:offside/screens/home_screen.dart';
 import 'package:offside/screens/screens/sign_in_screen.dart';
 import 'package:offside/utils/bloc_observer.dart';
@@ -34,6 +35,11 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => TeamCubit()..readFavourites()),
+        BlocProvider(create: (context) => MatchesCubit()..fixturesByDate(dates: [
+          DateTime.now().subtract(const Duration(days: 1)),
+          DateTime.now(),
+          DateTime.now().add(const Duration(days: 1)),
+        ])),
       ],
       child: ResponsiveSizer(
           builder: (context, orientation, screenType) => MaterialApp(
@@ -44,7 +50,7 @@ class MyApp extends StatelessWidget {
                 useMaterial3: true,
               ),
               home: FirebaseAuth.instance.currentUser != null
-                  ? const HomeScreen()
+                  ? HomeScreen()
                   : SignInScreen())),
     );
   }

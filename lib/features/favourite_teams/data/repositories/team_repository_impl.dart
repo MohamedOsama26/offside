@@ -27,13 +27,13 @@ class TeamRepositoryImpl extends TeamRepository {
 
   //
   @override
-  Future<void> updateLocalFavourites({required List<TeamObject> teams}) async {
+  Future<List<TeamObject>> updateLocalFavourites({required List<TeamObject> teams}) async {
 
     var maps = teams.map((team) {
-      // print(team.team.id);
       return team.toJson();
     }).toList();
     await _localDataSource.updateFavourites(maps);
+    return teams;
   }
 
   @override

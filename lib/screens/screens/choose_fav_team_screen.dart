@@ -91,7 +91,7 @@ class _ChooseFavTeamScreenState extends State<ChooseFavTeamScreen> {
                 Expanded(
                   child: BlocBuilder<TeamCubit, TeamState>(
                       builder: (context, state) {
-                    if (state is SearchTeamSuccess) {
+                    if (state is FavouriteTeamSuccess) {
                       return ListView.separated(
                           itemBuilder: (context, index) {
                             return FollowingTeamItem(
@@ -113,7 +113,6 @@ class _ChooseFavTeamScreenState extends State<ChooseFavTeamScreen> {
                     } else if (state is SearchTeamLoading) {
                       return const Center(child: CircularProgressIndicator());
                     } else {
-                      // TeamCubit.get(context).showTeams(text1);
                       return const Text('initial');
                     }
                   }),

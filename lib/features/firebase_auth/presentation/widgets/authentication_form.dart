@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:offside/constants/gradient_colors.dart';
 import 'package:offside/utils/validation.dart';
 
 class AuthenticationForm extends StatefulWidget {
@@ -195,17 +196,7 @@ class _AuthenticationForm extends State<AuthenticationForm> {
               width: double.infinity,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4.0),
-                  gradient: const LinearGradient(
-                    colors: [
-                      Color(0xff5b0060),
-                      Color(0xff870160),
-                      Color(0xffac255e),
-                      Color(0xffca485c),
-                      Color(0xffe16b5c),
-                      Color(0xfff39060),
-                      Color(0xffffb56b),
-                    ],
-                  ),
+                  gradient: multiColorGrad
               ),
               child: TextButton(
                 onPressed: () {

@@ -16,14 +16,16 @@ class TeamCubit extends Cubit<TeamState> {
 
   // Save favourite teams to local database
   void updateFavourites() {
-    _team.updateLocalFavourites(teams: favouriteTeams);
+    _team
+        .updateLocalFavourites(teams: favouriteTeams)
+        .then((teams) => emit(FavouriteTeamSuccess(teams)));
   }
 
   // Show searched teams to choose favourite teams
   void showTeams(text) {
     emit(SearchTeamLoading());
     _team.teamsAPI(search: text).then((value) {
-      emit(SearchTeamSuccess(value));
+      emit(FavouriteTeamSuccess(value));
     }).catchError((error) {
       emit(SearchTeamError(error.toString()));
     });
@@ -45,6 +47,8 @@ class TeamCubit extends Cubit<TeamState> {
   void readFavourites() {
     emit(FavouriteTeamLoading());
     _team.readLocalFavourites().then((teams) {
+      favouriteIds = teams.map((team) => team.team.id).toList();
+      favouriteTeams = teams;
       emit(FavouriteTeamSuccess(teams));
     }).catchError((error) {
       emit(FavouriteTeamError(error.toString()));
