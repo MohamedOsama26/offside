@@ -19,3 +19,27 @@ ___
 - Hive is a fast key-value database.
 
 ___
+
+## Screens of application
+
+#### 1- Sign up Screen :
+
+Here the fist screen will open if user open app for first time, here user can create account using Email and password, or use his account on google or facebook to create account here.
+
+<img src="https://user-images.githubusercontent.com/41261980/238651343-bf7e64ab-783b-4904-8c46-0499d2fdeda7.jpeg" width=200/>
+
+#### 2- Sign in screen :
+
+Here the sign in screen if user has already account and he logged out. Although he can use mail and password or choose from facebook or Google.
+
+<img src="https://user-images.githubusercontent.com/41261980/238650949-a9d56098-9f7b-4af1-b499-a95ca56077ca.jpeg" width=200/>
+
+#### 3- Home Screen :
+
+This is the main screen application which open automatically if account is authorized. And he will see if his favourite teams have matches today or not and display time before start and result after finish.
+
+<img src="https://user-images.githubusercontent.com/41261980/238651642-cd17519a-ef1b-4d9b-b7f3-0f5614eb7916.jpeg" width=200/>
+
+___
+
+Now we still work on this porject to develop new features in this app.
